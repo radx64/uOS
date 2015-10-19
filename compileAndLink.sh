@@ -1,3 +1,4 @@
 #!/bin/bash
-nasm -f elf32 loader.s
-ld -T link.ld -melf_i386 loader.o -o kernel.elf
+mkdir -p build
+nasm -f elf32 loader.s -o build/loader.o
+ld -T link.ld -melf_i386 build/loader.o -o build/kernel.elf
