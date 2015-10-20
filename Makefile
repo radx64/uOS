@@ -6,7 +6,7 @@ KERNEL_BINARY_PATH = $(BUILD_DIR)$(KERNEL_BINARY_NAME)
 OBJECTS = $(SOURCE_DIR)loader.o $(SOURCE_DIR)kmain.o
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
-	     -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c
+	     -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c -std=c99
 LDFLAGS = -T $(SOURCE_DIR)link.ld -melf_i386
 AS = nasm
 ASFLAGS = -f elf
