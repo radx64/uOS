@@ -2,9 +2,10 @@
 micro Operating System for x86 architecture
 
 Functionalities:
-- Nothing special for now. Only boots via GRUB and set 0xCAFEBABE to EAX.
+- Bootable
+- Knows how to handle Frame Buffer (kind of)
 
-![Imgur](http://i.imgur.com/toxxZr3.png?1)
+![Imgur](http://i.imgur.com/0GbobXh.png?1)
 
 References:
 - E.Helin, A.Renberg. [The little book about OS development](https://littleosbook.github.io/)
