@@ -5,7 +5,7 @@ SECTIONS {
 
     .text ALIGN (0x1000) :  /* align to 4 KB */
     {
-        *(.text)            /* link all text sections from all files */
+        *(.text*)            /* link all text sections from all files */
     }
 
     .rodata ALIGN (0x1000) :/* align to 4 KB */
@@ -21,6 +21,6 @@ SECTIONS {
     .bss ALIGN (0x1000) :   /* align to 4 KB */
     {
         *(COMMON)           /* all COMMON sections from all files */
-        *(.bss)             /* all bss sections from all files */
+        *(.bss*)             /* all bss sections from all files */
     }
 }
