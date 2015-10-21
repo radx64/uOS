@@ -4,6 +4,7 @@ micro Operating System for x86 architecture
 Functionalities:
 - Bootable
 - Knows how to handle Frame Buffer (kind of)
+- Text cursor support
 
 ![Imgur](http://i.imgur.com/0GbobXh.png?1)
 
