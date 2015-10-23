@@ -1,6 +1,7 @@
 # uOS
 micro Operating System for x86 architecture
-Build status:[![Build Status](https://travis-ci.org/radx64/uOS.svg)](https://travis-ci.org/radx64/uOS)
+
+Build status: [![Build Status](https://travis-ci.org/radx64/uOS.svg)](https://travis-ci.org/radx64/uOS)
 
 
 Functionalities:
