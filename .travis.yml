@@ -11,9 +11,6 @@ addons:
       - gcc-4.8
       - build-essential 
       - nasm 
-      - genisoimage 
-      - bochs 
-      - bochs-sdl
 
 before_install:
   - echo $LANG
@@ -21,4 +18,4 @@ before_install:
   - export CXX="g++-4.8" CC="gcc-4.8";
 
 script: 
-  - make iso
+  - make all
