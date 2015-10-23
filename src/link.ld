@@ -1,11 +1,12 @@
 ENTRY(loader)               /* name of the entry label */
 
-SECTIONS {
-    . = 0x00100000;         /* the code should be loaded at 1 MB of memory */
+SECTIONS 
+{
+    . = 0x100000;         /* the code should be loaded at 1 MB of memory */
 
     .text ALIGN (0x1000) :  /* align to 4 KB */
     {
-        *(.text*)            /* link all text sections from all files */
+        *(.text)            /* link all text sections from all files */
     }
 
     .rodata ALIGN (0x1000) :/* align to 4 KB */
@@ -21,6 +22,6 @@ SECTIONS {
     .bss ALIGN (0x1000) :   /* align to 4 KB */
     {
         *(COMMON)           /* all COMMON sections from all files */
-        *(.bss*)             /* all bss sections from all files */
+        *(.bss)             /* all bss sections from all files */
     }
 }
