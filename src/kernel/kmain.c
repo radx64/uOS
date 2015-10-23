@@ -10,7 +10,7 @@ void kmain()
 
     for(unsigned char c = 0; c < LENGTH; ++c)
     {
-        fb_write_at_location(c+COLUMNS/2-LENGTH/2-1,ROWS/2-1,hello[c],0xA,0x0);   
+        fb_write_at_location(c+COLUMNS/2-LENGTH/2-1,ROWS/2-1,hello[c],(Color)(c%0xE)+1,C_BLACK);   
     }
 
     while(1)

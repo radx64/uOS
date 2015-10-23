@@ -12,8 +12,8 @@ Content:    |ASCII CODE OF CHARACTER|   FG      |     BG    |
 void fb_write_cell(
     unsigned int location,
     char character,
-    unsigned char foreground,
-    unsigned char background)
+    Color foreground,
+    Color background)
 {
     char* fb = (char *) 0x000B8000;
     unsigned int offset = location * CELL_SIZE;
@@ -25,9 +25,8 @@ void fb_write_at_location(
     unsigned char x,
     unsigned char y,
     char character,
-    unsigned char
-    foreground,
-    unsigned char background)
+    Color foreground,
+    Color background)
 {
     if ((x > COLUMNS-1) || (y > ROWS-1))
     {
@@ -42,7 +41,7 @@ void fb_clear()
 {
     for(int offset = 0; offset <= COLUMNS*ROWS; offset++)
     {
-        fb_write_cell(offset,0, 0xF, 0x0);  
+        fb_write_cell(offset,0, C_WHITE, C_BLACK);  
     }
 }
 
