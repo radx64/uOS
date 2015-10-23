@@ -1,0 +1,24 @@
+language: cpp
+sudo: false
+compiler: gcc
+
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+      - gcc-4.8
+      - build-essential 
+      - nasm 
+      - genisoimage 
+      - bochs 
+      - bochs-sdl
+
+before_install:
+  - echo $LANG
+  - echo $LC_ALL
+  - export CXX="g++-4.8" CC="gcc-4.8";
+
+script: 
+  - make iso
