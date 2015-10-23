@@ -50,7 +50,7 @@ run: os.iso
 	bochs -q -f bochsConfig.txt
 
 %.o: %.c ${HEADERS}
-	$(CC) $(CFLAGS) $< -o $@
+	$(CC) $(CFLAGS) $< -o $@ -I./$(SOURCE_DIR)
 
 %.o: %.s
 	$(AS) $(ASFLAGS) $< -o $@

@@ -1,5 +1,5 @@
-#include "../drivers/io.h"
-#include "../drivers/framebuffer.h"
+#include "drivers/io.h"
+#include "drivers/framebuffer.h"
 
 void kmain()
 {
