@@ -5,12 +5,12 @@ void kmain()
 {
     fb_clear();
 
-    #define LENGTH 21
-    unsigned char hello[LENGTH] = "Hello world from uOS!";
+    #define LENGTH 23
+    unsigned char hello[LENGTH] = "Hello world from uOS! \2";
 
     for(unsigned char c = 0; c < LENGTH; ++c)
     {
-        fb_write_at_location(c,0,hello[c],0xA,0x0);   
+        fb_write_at_location(c+COLUMNS/2-LENGTH/2-1,ROWS/2-1,hello[c],0xA,0x0);   
     }
 
     while(1)
