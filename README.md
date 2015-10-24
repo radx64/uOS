@@ -6,10 +6,11 @@ Build status: [![Build Status](https://travis-ci.org/radx64/uOS.svg)](https://tr
 
 Functionalities:
 - Bootable
-- Knows how to handle Frame Buffer (kind of)
+- Knows how to handle Frame Buffer with scrolling it up.
 - Text cursor support
 
 ![Imgur](http://i.imgur.com/0GbobXh.png?1)
+![Imgur](http://i.imgur.com/OCXBABc.png?1)
 
 References:
 - E.Helin, A.Renberg. [The little book about OS development](https://littleosbook.github.io/)
