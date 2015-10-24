@@ -27,12 +27,29 @@ typedef enum
     C_WHITE         = 0xF
 } Color;
 
+/** vga_write_cell_:
+*   Writes single character on given location of screen
+*
+*   @param location 1D coordinate of cursor
+*   @param character Character to write
+*   @param foreground Foreground color
+*   @param background Background color
+*/
 void vga_write_cell(
     unsigned int location,
     char character,
     Color foreground,
     Color background);
 
+/** vga_write_cell_xy:
+*   Writes single character on given location of screen
+*
+*   @param x X coordinate of cursor
+*   @param y Y coordinate of cursor
+*   @param character Character to write
+*   @param foreground Foreground color
+*   @param background Background color
+*/
 void vga_write_cell_xy(
     unsigned char x,
     unsigned char y,
@@ -40,16 +57,45 @@ void vga_write_cell_xy(
     Color foreground,
     Color background);
 
+/** vga_clear:
+*   Clears screen
+*/
 void vga_clear();
 
+/** vga_set_colors:
+*   Moves cursor to given position on screen
+*
+*   @param foreground Foreground color
+*   @param background Background color
+*/
 void vga_set_colors(Color foreground, Color background);
 
+/** vga_move_cursor:
+*   Moves cursor to given position on screen
+*
+*   @param position 1D coordinate of the cursor
+*/
 void vga_move_cursor(unsigned int position);
 
+/** vga_move_cursor_xy:
+*   Moves cursor to given position on screen
+*
+*   @param x X coordinate of cursor
+*   @param y Y coordinate of cursor
+*/
 void vga_move_cursor_xy(unsigned char x, unsigned char y);
 
+/** vga_scroll_up:
+*   Scrolls up whole screen by one line
+*/
 void vga_scroll_up();
 
+/** vga_write:
+*   Write text to screen
+*
+*   @param buffer The address of the I/O port
+*   @param length Length of written text
+*/
 void vga_write(char* buffer, unsigned int length);
 
 #endif // VGA_H
