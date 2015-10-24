@@ -21,6 +21,8 @@ void serial_configure_buffers(unsigned short com);
 
 int serial_is_transmit_fifo_empty(unsigned int com);
 
+void serial_init(unsigned int com);
+
 void serial_write(char* buffer, unsigned int length);
 
 #endif // SERIAL_H

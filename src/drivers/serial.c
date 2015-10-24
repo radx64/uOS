@@ -27,6 +27,13 @@ int serial_is_transmit_fifo_empty(unsigned int com)
     return inb(SERIAL_MODEM_STATUS_PORT(com)) & 0x20;
 }
 
+void serial_init(unsigned int com)
+{
+    serial_configure_baud_rate(com, 0x1);
+    serial_configure_line(com);
+    serial_configure_buffers(com);
+}
+
 void serial_write(char* buffer, unsigned int length)
 {
     for (unsigned int i=0;i<length;++i)
