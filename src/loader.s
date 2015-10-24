@@ -14,8 +14,7 @@ align 4                         ; code must be 4 byte aligned
     dd CHECKSUM                 ; as well as the checksum
 
 loader:                         ; the loader label (defined as entry point in linking script)
-    mov esp, kernel_stack + KERNEL_STACK_SIZE ; point esp to start of the
-                                              ; stack (end of memory area)
+    mov esp, kernel_stack + KERNEL_STACK_SIZE ; point esp to start of the stack (end of memory area)
 
 extern kmain                    ; declare kmain as external function
     call kmain                  ; call main function
