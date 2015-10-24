@@ -5,24 +5,17 @@ void kmain()
 {
     fb_clear();
 
+    #define LONGTEXT 91
+    char longtext[LONGTEXT] = "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\n";
+    write(longtext, LONGTEXT);
     #define LENGTH 23
-    unsigned char hello[LENGTH] = "Hello world from uOS! \2";
-
-    for(unsigned char c = 0; c < LENGTH; ++c)
-    {
-        fb_write_at_location(c+COLUMNS/2-LENGTH/2-1,ROWS/2-1,hello[c],(Color)(c%0xE)+1,C_BLACK);   
-    }
-
+    char hello[LENGTH] = "Hello world from uOS! \n";
+    int i = 0;
     while(1)
     {
-        for (unsigned int r = 0; r < ROWS; ++r)
-        {
-            for (unsigned int c = 0; c < COLUMNS; ++c)
-            {
-                fb_move_cursor(c, r);
-                for(int i=0; i<500000; ++i){}    //hot loop cause no sleep implemented yet
-            }
-        }
-    }
-
+        fb_set_colors(i % 16, C_BLACK);
+        write(hello, LENGTH);
+        i++;
+        for(int j=0;j<100000;++j){} // hot loop to see screen scrolling (need to implement timers support)
+    };
 };

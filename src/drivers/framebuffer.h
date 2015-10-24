@@ -4,6 +4,7 @@
 #define COLUMNS 80
 #define ROWS 25
 #define CELL_SIZE 2
+#define FB_ADDRESS 0x000B8000
 
 typedef enum 
 {
@@ -25,14 +26,13 @@ typedef enum
     C_WHITE         = 0xF
 } Color;
 
-
 void fb_write_cell(
     unsigned int location,
     char character,
     Color foreground,
     Color background);
 
-void fb_write_at_location(
+void fb_write_cell_xy(
     unsigned char x,
     unsigned char y,
     char character,
@@ -41,6 +41,14 @@ void fb_write_at_location(
 
 void fb_clear();
 
-void fb_move_cursor(unsigned char x, unsigned char y);
+void fb_set_colors(Color foreground, Color background);
+
+void fb_move_cursor(unsigned int position);
+
+void fb_move_cursor_xy(unsigned char x, unsigned char y);
+
+void fb_scroll_up();
+
+void write(char* buffer, unsigned int length);
 
 #endif // FRAMEBUFFER_H
