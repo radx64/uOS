@@ -4,6 +4,7 @@
 #define COLUMNS 80
 #define ROWS 25
 #define CELL_SIZE 2
+#define TAB_WIDTH 4
 #define FB_ADDRESS 0x000B8000
 
 typedef enum 

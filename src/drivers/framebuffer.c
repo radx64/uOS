@@ -96,6 +96,11 @@ void write(char* buffer, unsigned int length)
         {
             fb_currentCell = (fb_currentCell - (fb_currentCell % COLUMNS)) + COLUMNS;
             continue;
+        }
+        if (buffer[i] == '\t')
+        {
+            fb_currentCell = fb_currentCell - (fb_currentCell % TAB_WIDTH) + TAB_WIDTH;
+            continue;
         } 
         if (fb_currentCell >= ROWS*COLUMNS)
         {

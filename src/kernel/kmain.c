@@ -8,8 +8,8 @@ void kmain()
     #define LONGTEXT 91
     char longtext[LONGTEXT] = "123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890\n";
     write(longtext, LONGTEXT);
-    #define LENGTH 23
-    char hello[LENGTH] = "Hello world from uOS! \n";
+    #define LENGTH 41
+    char hello[LENGTH] = "Hello world from uOS!\t\tNow with tabs!\t\t\2\n";
     int i = 0;
     while(1)
     {
