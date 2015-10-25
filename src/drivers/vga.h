@@ -1,6 +1,8 @@
 #ifndef VGA_H
 #define VGA_H
 
+#include <stdint.h>
+
 #define COLUMNS 80
 #define ROWS 25
 #define CELL_SIZE 2
@@ -31,13 +33,13 @@ typedef enum
 *   Writes single character on given location of screen
 *
 *   @param location 1D coordinate of cursor
-*   @param character Character to write
+*   @param character character to write
 *   @param foreground Foreground color
 *   @param background Background color
 */
 void vga_write_cell(
-    unsigned int location,
-    char character,
+    uint32_t location,
+    int8_t character,
     Color foreground,
     Color background);
 
@@ -46,14 +48,14 @@ void vga_write_cell(
 *
 *   @param x X coordinate of cursor
 *   @param y Y coordinate of cursor
-*   @param character Character to write
+*   @param character character to write
 *   @param foreground Foreground color
 *   @param background Background color
 */
 void vga_write_cell_xy(
-    unsigned char x,
-    unsigned char y,
-    char character,
+    uint8_t x,
+    uint8_t y,
+    int8_t character,
     Color foreground,
     Color background);
 
@@ -75,7 +77,7 @@ void vga_set_colors(Color foreground, Color background);
 *
 *   @param position 1D coordinate of the cursor
 */
-void vga_move_cursor(unsigned int position);
+void vga_move_cursor(uint32_t position);
 
 /** vga_move_cursor_xy:
 *   Moves cursor to given position on screen
@@ -83,7 +85,7 @@ void vga_move_cursor(unsigned int position);
 *   @param x X coordinate of cursor
 *   @param y Y coordinate of cursor
 */
-void vga_move_cursor_xy(unsigned char x, unsigned char y);
+void vga_move_cursor_xy(uint8_t x, uint8_t y);
 
 /** vga_scroll_up:
 *   Scrolls up whole screen by one line
@@ -93,9 +95,8 @@ void vga_scroll_up();
 /** vga_write:
 *   Write text to screen
 *
-*   @param buffer The address of the I/O port
-*   @param length Length of written text
+*   @param buffer Text to print
 */
-void vga_write(char* buffer, unsigned int length);
+void vga_write(int8_t* buffer);
 
 #endif // VGA_H

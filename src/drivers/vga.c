@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include "vga.h"
 #include "io.h"
 
@@ -8,7 +10,7 @@ Bit:        |15 14 13 12 11 10  9  8| 7  6  5  4  3  2  1  0|
 Content:    |ASCII CODE OF CHARACTER|   FG      |     BG    |
 */
 
-unsigned short vga_currentCell = 0;
+uint16_t vga_currentCell = 0;
 Color vga_foreground = C_WHITE;
 Color vga_background = C_BLACK;
 
@@ -19,21 +21,21 @@ void vga_set_colors(Color foreground, Color background)
 }
 
 void vga_write_cell(
-    unsigned int location,
-    char character,
+    uint32_t location,
+    int8_t character,
     Color foreground,
     Color background)
 {
-    char* fb = (char *) VGA_ADDRESS;
-    unsigned int offset = location * CELL_SIZE;
+    int8_t* fb = (int8_t *) VGA_ADDRESS;
+    uint32_t offset = location * CELL_SIZE;
     fb[offset] = character;
     fb[offset+1] = (foreground & 0x0F) | ((background * 0x0F)<< 4);
 } 
 
 void vga_write_cell_xy(
-    unsigned char x,
-    unsigned char y,
-    char character,
+    uint8_t x,
+    uint8_t y,
+    int8_t character,
     Color foreground,
     Color background)
 {
@@ -42,7 +44,7 @@ void vga_write_cell_xy(
         return;     // early exit when incorrect parameters given
     }
 
-    unsigned int offset = COLUMNS * y + x;
+    uint32_t offset = COLUMNS * y + x;
     vga_write_cell(offset, character, foreground, background);
 }
 
@@ -54,7 +56,7 @@ void vga_clear()
     }
 }
 
-void vga_move_cursor(unsigned int position)
+void vga_move_cursor(uint32_t position)
 {
     #define vga_COMMAND_PORT 0x3D4
     #define vga_DATA_PORT    0x3D5
@@ -68,29 +70,31 @@ void vga_move_cursor(unsigned int position)
     outb(vga_DATA_PORT, (position >> 8) & 0xFF);
 }
 
-void vga_move_cursor_xy(unsigned char x, unsigned char y)
+void vga_move_cursor_xy(uint8_t x, uint8_t y)
 {
-    unsigned short position = y*COLUMNS + x;
+    uint16_t position = y*COLUMNS + x;
     vga_move_cursor(position);
 }
 
 void vga_scroll_up()
 {
-    char* fb = (char *) VGA_ADDRESS;
-    for (unsigned int i = 0; i < COLUMNS*(ROWS-1)*CELL_SIZE;++i)
+    int8_t* fb = (int8_t *) VGA_ADDRESS;
+    for (uint32_t i = 0; i < COLUMNS*(ROWS-1)*CELL_SIZE;++i)
     {
         fb[i] = fb[i+COLUMNS*CELL_SIZE];  
     }
 
-    for (unsigned int i = COLUMNS*(ROWS-1); i < COLUMNS*ROWS;i++)
+    for (uint32_t i = COLUMNS*(ROWS-1); i < COLUMNS*ROWS;i++)
     {
         vga_write_cell(i,0, C_WHITE, C_BLACK);  
     }  
 }
 
-void vga_write(char* buffer, unsigned int length)
+void vga_write(int8_t* buffer)
 {
-    for (unsigned int i = 0; i< length; ++i)
+    uint32_t length = strlen(buffer);
+
+    for (uint32_t i = 0; i< length; ++i)
     {
         if (buffer[i] == '\n')
         {
