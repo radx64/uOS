@@ -8,6 +8,7 @@ Functionalities:
 - Bootable
 - Knows how to handle Frame Buffer with scrolling it up.
 - Text cursor support
+- Serial communication support
 
 ![Imgur](http://i.imgur.com/0GbobXh.png?1)
 ![Imgur](http://i.imgur.com/OCXBABc.png?1)
