@@ -1,5 +1,5 @@
+#include <stdint.h>
 #include "drivers/io.h"
-
 #ifndef SERIAL_H
 #define SERIAL_H
 
@@ -23,16 +23,16 @@
 #define SERIAL_LINE_ENABLE_DLAB         0x80 // tells the controler of serial port to first 
                                              // expec highest 8 bits then next lowet 8 bits
 
-void serial_configure_baud_rate(unsigned short com, unsigned short divisor);
+void serial_configure_baud_rate(uint16_t com, uint16_t divisor);
 
-void serial_configure_line(unsigned short com);
+void serial_configure_line(uint16_t com);
 
-void serial_configure_buffers(unsigned short com);
+void serial_configure_buffers(uint16_t com);
 
-int serial_is_transmit_fifo_empty(unsigned int com);
+int serial_is_transmit_fifo_empty(uint32_t com);
 
-void serial_init(unsigned int com);
+void serial_init(uint32_t com);
 
-void serial_write(char* buffer, unsigned int length);
+void serial_write(char* buffer);
 
 #endif // SERIAL_H

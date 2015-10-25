@@ -1,13 +1,15 @@
+#include <string.h>
+
 #include "drivers/serial.h"
 
-void serial_configure_baud_rate(unsigned short com, unsigned short divisor)
+void serial_configure_baud_rate(uint16_t com, uint16_t divisor)
 {
     outb(SERIAL_LINE_COMMAND_PORT(com),SERIAL_LINE_ENABLE_DLAB);
     outb(SERIAL_DATA_PORT(com), (divisor >> 8) & 0x00FF);
     outb(SERIAL_DATA_PORT(com), divisor & 0x00FF);
 }
 
-void serial_configure_line(unsigned short com)
+void serial_configure_line(uint16_t com)
 {
     /*
     Bit:      | 7 | 6 | 5 4 3 | 2 | 1 0 |
@@ -24,7 +26,7 @@ void serial_configure_line(unsigned short com)
     outb(SERIAL_LINE_COMMAND_PORT(com), 0x03);
 }
 
-void serial_configure_buffers(unsigned short com)
+void serial_configure_buffers(uint16_t com)
 {
     /*
     Bit:      | 7 6 | 5 | 4 | 3 | 2 | 1 | 0 |
@@ -43,7 +45,7 @@ void serial_configure_buffers(unsigned short com)
     outb(SERIAL_FIFO_COMMAND_PORT(com), 0xC7);
 }
 
-void serial_configure_modem(unsigned short com)
+void serial_configure_modem(uint16_t com)
 {
     /*
     Bit:      | 7 | 6 | 5 | 4 | 3 | 2 | 1 | 0 |
@@ -62,7 +64,7 @@ void serial_configure_modem(unsigned short com)
     outb(SERIAL_MODEM_COMMAND_PORT(com), 0x03);
 }
 
-int serial_is_transmit_fifo_empty(unsigned int com)
+int serial_is_transmit_fifo_empty(uint32_t com)
 {
     
     /*
@@ -76,23 +78,25 @@ int serial_is_transmit_fifo_empty(unsigned int com)
     cts  - Clear to Send 
     crls - Change in RLSD
     teri - Trailing Edge RI
-    cdsr - Change in DSR
-    ccts - Change in CTS
+    cdsr - Change in DSR detected
+    ccts - Change in CTS detected
     */
     
     return inb(SERIAL_MODEM_STATUS_PORT(com)) & 0x20;
 }
 
-void serial_init(unsigned int com)
+void serial_init(uint32_t com)
 {
     serial_configure_baud_rate(com, SERIAL_SPEED_115200);
     serial_configure_line(com);
     serial_configure_buffers(com);
 }
 
-void serial_write(char* buffer, unsigned int length)
+void serial_write(char* buffer)
 {
-    for (unsigned int i=0;i<length;++i)
+    uint32_t length = strlen(buffer);
+
+    for (uint32_t i=0;i<length;++i)
     {
         while(!serial_is_transmit_fifo_empty(SERIAL_COM1_BASE)){}
         outb(SERIAL_COM1_BASE, buffer[i]);

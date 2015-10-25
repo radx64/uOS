@@ -3,7 +3,7 @@ SOURCE_DIR = src
 KERNEL_BINARY_NAME = kernel.elf
 KERNEL_BINARY_PATH = $(BUILD_DIR)$(KERNEL_BINARY_NAME)
 
-C_SOURCES = $(wildcard $(SOURCE_DIR)/kernel/*.c $(SOURCE_DIR)/drivers/*.c)
+C_SOURCES = $(wildcard $(SOURCE_DIR)/kernel/*.c $(SOURCE_DIR)/drivers/*.c $(SOURCE_DIR)/stdlib/*.c)
 ASM_SOURCES = $(wildcard $(SOURCE_DIR)/kernel/*.s $(SOURCE_DIR)/drivers/*.s $(SOURCE_DIR)/*.s)
 HEADERS = $(wildcard $(SOURCE_DIR)/kernel/*.h $(SOURCE_DIR)/drivers/*.h)
 OBJECTS = ${C_SOURCES:.c=.o} ${ASM_SOURCES:.s=.o}
