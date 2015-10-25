@@ -29,7 +29,7 @@ void vga_write_cell(
     int8_t* fb = (int8_t *) VGA_ADDRESS;
     uint32_t offset = location * CELL_SIZE;
     fb[offset] = character;
-    fb[offset+1] = (foreground & 0x0F) | ((background * 0x0F)<< 4);
+    fb[offset+1] = (foreground & 0x0F) | ((background & 0x0F) << 4);
 } 
 
 void vga_write_cell_xy(

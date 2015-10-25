@@ -1,5 +1,5 @@
 default=0
 timeout=0
 
-title os
+title uOS by radx64
 kernel /boot/kernel.elf

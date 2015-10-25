@@ -10,8 +10,9 @@ Functionalities:
 - Text cursor support
 - Serial communication support
 
-![Imgur](http://i.imgur.com/0GbobXh.png?1)
-![Imgur](http://i.imgur.com/OCXBABc.png?1)
+![Imgur](http://i.imgur.com/0GbobXh.png)
+![Imgur](http://i.imgur.com/OCXBABc.png)
+![Imgur](http://i.imgur.com/TyE9ebt.png)
 
 References:
 - E.Helin, A.Renberg. [The little book about OS development](https://littleosbook.github.io/)
