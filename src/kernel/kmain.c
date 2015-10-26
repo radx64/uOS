@@ -37,10 +37,9 @@ void kmain()
         vga_set_colors((i % 15) + 1, C_BLACK);
         switch (i)
         {
-            case 0 :
-            case 8 :
-            case 9 :
-            case 10 : vga_write("_"); break;
+            case 0 :    // skip ASCIZ zero
+            case 9 :    // skip tabulator
+            case 10 : vga_write("_"); break; // skip newline 
             default : vga_write(c);
         };
         if (i % 32 == 0) vga_write("\n");
