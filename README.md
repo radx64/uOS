@@ -15,7 +15,7 @@ Functionalities:
 ![Imgur](http://i.imgur.com/TyE9ebt.png)
 
 To do next:
- - Implement printf like function
+ - Implement printf like function [ongoing]
  - Segmentation
  - Interrupts
  - Keyboard support
