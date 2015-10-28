@@ -98,3 +98,25 @@ char *itoa(uint64_t val, char *str, int32_t base)
     }
     return str;
 }
+
+void *memset(void *ptr, uint8_t value, uint64_t num)
+{
+    uint8_t *temp = (uint8_t *)ptr;
+
+    while(num--) {
+        *temp++ = value; 
+    }
+    return ptr;
+}
+
+void *memcpy(void *destination, void *source, uint64_t num) 
+{
+    uint8_t *dest = (uint8_t *)destination;
+    uint8_t *src = (uint8_t *)source;
+
+    while(num--) {
+        *dest++ = *src++; 
+    }
+
+    return destination;
+}

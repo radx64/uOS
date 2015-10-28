@@ -15,4 +15,8 @@ int32_t oct_to_dec(int n);
 
 char *itoa(uint64_t val, char *str, int32_t base);
 
+void *memset(void *ptr, uint8_t value, uint64_t num);
+
+void *memcpy(void *destination, void *source, uint64_t num);
+
 #endif // STRING_H
