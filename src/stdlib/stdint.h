@@ -11,6 +11,9 @@ typedef int     int32_t;
 typedef short   int16_t;
 typedef char    int8_t;
 
+#define true 1
+#define false 0
 typedef int8_t bool;
+
 
 #endif // STDINT_H

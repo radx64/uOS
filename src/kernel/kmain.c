@@ -59,8 +59,9 @@ void kmain()
     vga_set_colors(C_WHITE, C_BLACK);
     printf("This is printf without any additional params.\n");
     printf("This is printf with  %%s  support - %s\n", "this is a string as param");
-    printf("This is printf with  %%d  support - %d\n", (int)1234);
-    printf("This is printf with  %%f  support - %f\n", (float)12.34);
+    printf("This is printf with  %%d  support - %d\n", 1234);
+    printf("This is printf with  %%d  support - %d\n", -1234);
+    printf("This is printf with  %%f  support - %f\n", 12.34);
     printf("This is printf with  %%lf support - %lf\n", (double)12.34);
     while(1)
     {
