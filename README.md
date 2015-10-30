@@ -1,30 +1,32 @@
-# uOS
+## uOS
 micro Operating System for x86 architecture
 
 Build status: [![Build Status](https://travis-ci.org/radx64/uOS.svg)](https://travis-ci.org/radx64/uOS)
 
 
-Functionalities:
+# Functionalities
 - Bootable
 - Knows how to handle Frame Buffer with scrolling it up.
 - Text cursor support
 - Serial communication support
 
-![Imgur](http://i.imgur.com/0GbobXh.png)
-![Imgur](http://i.imgur.com/OCXBABc.png)
 ![Imgur](http://i.imgur.com/TyE9ebt.png)
 
-To do next:
- - Implement printf like function [ongoing]
- - Segmentation
- - Interrupts
- - Keyboard support
- - User mode 
- - Virtual memory
- - Paging
- - File system
- - System calls
- - Multitasking
+# Steps
+* [x] Make it bootable via GRUB
+* [x] Framebuffer support in VGA text mode
+* [x] Support text cursor movement
+* [x] Support serial output via serial port (for further debugging purposes)
+* [ ] [ongoing] Implement printf like function 
+* [ ] Segmentation
+* [ ] Interrupts
+* [ ] Keyboard support
+* [ ] User mode 
+* [ ] Virtual memory
+* [ ] Paging
+* [ ] File system
+* [ ] System calls
+* [ ] Multitasking
 
 References:
 - A. Tanenbaum, 2007. Modern operating systems, 3rd edition. Prentice Hall, Inc.
