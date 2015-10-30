@@ -1,10 +1,10 @@
-## uOS
+# uOS
 micro Operating System for x86 architecture
 
 Build status: [![Build Status](https://travis-ci.org/radx64/uOS.svg)](https://travis-ci.org/radx64/uOS)
 
 
-# Functionalities
+### Functionalities
 - Bootable
 - Knows how to handle Frame Buffer with scrolling it up.
 - Text cursor support
@@ -12,7 +12,7 @@ Build status: [![Build Status](https://travis-ci.org/radx64/uOS.svg)](https://tr
 
 ![Imgur](http://i.imgur.com/TyE9ebt.png)
 
-# Steps
+### Steps
 * [x] Make it bootable via GRUB
 * [x] Framebuffer support in VGA text mode
 * [x] Support text cursor movement
