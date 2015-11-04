@@ -15,5 +15,4 @@ typedef char    int8_t;
 #define false 0
 typedef int8_t bool;
 
-
 #endif // STDINT_H

@@ -56,7 +56,18 @@ void printf(const char* format, ...)
                     }
                     uint32_t numberlen = strlen(startIter);
                     memcpy((void *)(bufferIter), (void *)startIter, numberlen);
-                    bufferIter += numberlen; 
+                    bufferIter += numberlen-1; 
+                    break;
+                }
+                case 'p' : 
+                {
+                    const char numberBufferSize = 32;
+                    char buffer[numberBufferSize];
+                    char *pstr = itoa(va_arg(currentParam, uint64_t), buffer+numberBufferSize, 16);
+                    *--pstr = 'x';
+                    *--pstr = '0';
+                    memcpy((void *)(bufferIter), (void *)pstr, strlen(pstr));
+                    bufferIter += strlen(pstr)-1;
                     break;
                 }
                 case 'f' :  *bufferIter = 'f'; break;
