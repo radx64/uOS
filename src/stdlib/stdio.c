@@ -29,6 +29,12 @@ void printf(const char* format, ...)
             {
                 case '\0': break;
                 case '%' :  *bufferIter = '%'; break;
+                case 'c' :
+                {
+                    char arg = va_arg(currentParam, int); // char is promoted to int when passed via va
+                    memcpy((void *)(bufferIter), &arg, 1);
+                    break;    
+                }
                 case 's' :  
                 {
                     char* arg = va_arg(currentParam, char*);

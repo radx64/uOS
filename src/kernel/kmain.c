@@ -62,8 +62,7 @@ void kmain()
     printf("This is printf with  %%d  support - %d\n", 1234);
     printf("This is printf with  %%d  support - %d\n", -1234);
     printf("This is printf with  %%p  support - %p\n", 0x1234);
-    printf("This is printf with  %%f  support - %f\n", 12.34);
-    printf("This is printf with  %%lf support - %lf\n", (double)12.34);
+    printf("This is printf with  %%c  support - %c\n", 'a');
     while(1)
     {
         sleep(200000);
