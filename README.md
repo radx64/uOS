@@ -17,7 +17,7 @@ Build status:
 * [x] Framebuffer support in VGA text mode
 * [x] Support text cursor movement
 * [x] Support serial output via serial port (for further debugging purposes)
-* [ ] [ongoing] Implement printf like function 
+* [x] Implement some basics of standard library
 * [ ] Segmentation
 * [ ] Interrupts
 * [ ] Keyboard support
