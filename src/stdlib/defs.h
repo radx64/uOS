@@ -1,8 +1,6 @@
-#ifndef DEFS_H
-#define DEFS_H
+#ifndef DEFS_H_
+#define DEFS_H_
 
 #define NULL 0
-#define TRUE 1
-#define FALSE 0
 
-#endif // DEFS_H
+#endif // DEFS_H_

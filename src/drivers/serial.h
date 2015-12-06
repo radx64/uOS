@@ -1,7 +1,8 @@
+#ifndef SERIAL_H_
+#define SERIAL_H_
+
 #include <stdint.h>
 #include "drivers/io.h"
-#ifndef SERIAL_H
-#define SERIAL_H
 
 #define SERIAL_COM1_BASE                0x3F8
 #define SERIAL_COM2_BASE                0x2F8
@@ -35,4 +36,4 @@ void serial_init(uint32_t com);
 
 void serial_write(char* buffer);
 
-#endif // SERIAL_H
+#endif // SERIAL_H_

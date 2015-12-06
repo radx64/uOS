@@ -1,8 +1,8 @@
-#ifndef MATH_H
-#define MATH_H
+#ifndef MATH_H_
+#define MATH_H_
 
 #include "stdint.h"
 
 int32_t pow(int base, int power);
 
-#endif // MATH_H
+#endif // MATH_H_

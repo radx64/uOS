@@ -1,5 +1,5 @@
-#ifndef VGA_H
-#define VGA_H
+#ifndef VGA_H_
+#define VGA_H_
 
 #include <stdint.h>
 
@@ -99,4 +99,4 @@ void vga_scroll_up();
 */
 void vga_write(int8_t* buffer);
 
-#endif // VGA_H
+#endif // VGA_H_

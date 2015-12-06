@@ -1,5 +1,5 @@
-#ifndef STDINT_H
-#define STDINT_H
+#ifndef STDINT_H_
+#define STDINT_H_
 
 typedef unsigned long  uint64_t;
 typedef unsigned int   uint32_t;
@@ -15,4 +15,4 @@ typedef char    int8_t;
 #define false 0
 typedef int8_t bool;
 
-#endif // STDINT_H
+#endif // STDINT_H_

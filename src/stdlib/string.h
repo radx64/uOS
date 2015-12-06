@@ -1,5 +1,5 @@
-#ifndef STRING_H
-#define STRING_H
+#ifndef STRING_H_
+#define STRING_H_
 
 #include "stdint.h"
 
@@ -19,4 +19,4 @@ void *memset(void *ptr, uint8_t value, uint64_t num);
 
 void *memcpy(void *destination, void *source, uint64_t num);
 
-#endif // STRING_H
+#endif // STRING_H_

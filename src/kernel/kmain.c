@@ -1,14 +1,40 @@
 #include <stdint.h>
 #include <stdio.h>
+#include "gdt.h"
 #include "drivers/io.h"
 #include "drivers/vga.h"
 #include "drivers/serial.h"
+
+void sleep(uint32_t cycles);
+void headerPrint();
+void asciiDemo();
+void printfDemo();
+
+void kmain()
+{
+    gdt_init();
+
+    serial_init(SERIAL_COM1_BASE);
+    serial_write("Serial initialized\r\n");
+
+    vga_clear();
+    headerPrint();
+    sleep(1000000);
+    vga_set_colors(C_WHITE, C_BLACK);
+
+    vga_write("This is quite long string and it should be wrapped around to next line by VGA driver. Blah blah blah...\n");
+    sleep(1000000);
+    asciiDemo();
+    sleep(1000000);
+    printfDemo();
+}
+
 void sleep(uint32_t cycles)
 {
     for(uint32_t j = 0; j < cycles; ++j)
     {
-        __asm__("nop;");
-    } // hot loop to see screen scrolling (need to implement timers support)    
+        __asm__ volatile("nop");
+    }
 }
 
 void headerPrint()
@@ -41,20 +67,8 @@ void asciiDemo()
 }
 
 
-void kmain()
+void printfDemo()
 {
-    serial_init(SERIAL_COM1_BASE);
-    serial_write("Serial initialized\r\n");
-
-    vga_clear();
-    headerPrint();
-    sleep(1000000);
-    vga_set_colors(C_WHITE, C_BLACK);
-
-    vga_write("This is quite long string and it should be wrapped around to next line by VGA driver. Blah blah blah...\n");
-    sleep(1000000);
-    asciiDemo();
-    
     vga_write("\n\n");
     vga_set_colors(C_WHITE, C_BLACK);
     printf("This is printf without any additional params.\n");
@@ -62,9 +76,5 @@ void kmain()
     printf("This is printf with  %%d  support - %d\n", 1234);
     printf("This is printf with  %%d  support - %d\n", -1234);
     printf("This is printf with  %%p  support - %p\n", 0x1234);
-    printf("This is printf with  %%c  support - %c\n", 'a');
-    while(1)
-    {
-        sleep(200000);
-    };
+    printf("This is printf with  %%c  support - %c\n", 'a');    
 }

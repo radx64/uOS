@@ -13,14 +13,16 @@ align 4                         ; code must be 4 byte aligned
     dd FLAGS                    ; same with the flags
     dd CHECKSUM                 ; as well as the checksum
 
-loader:                         ; the loader label (defined as entry point in linking script)
-    mov esp, kernel_stack + KERNEL_STACK_SIZE ; point esp to start of the stack (end of memory area)
+loader:                         				; the loader label (defined as entry point in linking script)
+    mov esp, kernel_stack + KERNEL_STACK_SIZE 	; point esp to start of the stack (end of memory area)
 
 extern kmain                    ; declare kmain as external function
     call kmain                  ; call main function
 
 .loop:
-     jmp .loop                   ; loop forever
+	cli							; disable interrupts
+	hlt							; halt cpu
+     jmp .loop                  ; loop forever (should be never called)
 
 section .bss
 align 4                         ; align to 4 bytes

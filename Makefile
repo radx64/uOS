@@ -6,7 +6,7 @@ KERNEL_BINARY_PATH = $(BUILD_DIR)$(KERNEL_BINARY_NAME)
 C_SOURCES = $(wildcard $(SOURCE_DIR)/kernel/*.c $(SOURCE_DIR)/drivers/*.c $(SOURCE_DIR)/stdlib/*.c)
 ASM_SOURCES = $(wildcard $(SOURCE_DIR)/kernel/*.s $(SOURCE_DIR)/drivers/*.s $(SOURCE_DIR)/*.s)
 HEADERS = $(wildcard $(SOURCE_DIR)/kernel/*.h $(SOURCE_DIR)/drivers/*.h)
-OBJECTS = ${C_SOURCES:.c=.o} ${ASM_SOURCES:.s=.o}
+OBJECTS = ${ASM_SOURCES:.s=.o} ${C_SOURCES:.c=.o} 
 CC = gcc
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 	     -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c -std=c99
@@ -23,7 +23,7 @@ $(KERNEL_BINARY_PATH): $(OBJECTS)
 .PHONY: configure
 configure:
 	sudo apt-get update
-	sudo apt-get install -y build-essential nasm genisoimage bochs bochs-sdl
+	sudo apt-get install -y build-essential nasm genisoimage qemu
 
 .PHONY: clean
 clean:
@@ -47,7 +47,7 @@ os.iso: $(KERNEL_BINARY_PATH)
 			iso
 
 run: os.iso
-	bochs -q -f bochsConfig.txt
+	qemu-system-x86_64 -boot d -cdrom os.iso -m 2 -serial stdio
 
 %.o: %.c ${HEADERS}
 	$(CC) $(CFLAGS) $< -o $@ -I./$(SOURCE_DIR) -I./$(SOURCE_DIR)/stdlib
