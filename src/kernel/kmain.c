@@ -1,6 +1,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include "gdt.h"
+#include "idt.h"
 #include "drivers/io.h"
 #include "drivers/vga.h"
 #include "drivers/serial.h"
@@ -12,10 +13,12 @@ void printfDemo();
 
 void kmain()
 {
-    gdt_init();
-
+    //gdt_init();
     serial_init(SERIAL_COM1_BASE);
     serial_write("Serial initialized\r\n");
+
+    idt_init();
+    kb_init();
 
     vga_clear();
     headerPrint();
@@ -27,6 +30,10 @@ void kmain()
     asciiDemo();
     sleep(1000000);
     printfDemo();
+    while(1)
+    {
+
+    }
 }
 
 void sleep(uint32_t cycles)
