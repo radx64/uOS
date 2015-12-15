@@ -18,13 +18,12 @@ Build status:
 * [x] Support text cursor movement
 * [x] Support serial output via serial port (for further debugging purposes)
 * [x] Implement some basics of standard library
-* [ ] Segmentation
-* [ ] Interrupts
-* [ ] Keyboard support
+* [ ] Interrupts [ongoing]
+* [ ] Keyboard support [ongoing]
+* [ ] File system
 * [ ] User mode 
 * [ ] Virtual memory
 * [ ] Paging
-* [ ] File system
 * [ ] System calls
 * [ ] Multitasking
 
