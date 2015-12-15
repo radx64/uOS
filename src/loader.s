@@ -20,7 +20,7 @@ extern kmain                    ; declare kmain as external function
     call kmain                  ; call main function
 
 .loop:
-	cli							; disable interrupts
+;	cli							; disable interrupts
 	hlt							; halt cpu
      jmp .loop                  ; loop forever (should be never called)
 

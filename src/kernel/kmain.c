@@ -30,10 +30,6 @@ void kmain()
     asciiDemo();
     sleep(1000000);
     printfDemo();
-    while(1)
-    {
-
-    }
 }
 
 void sleep(uint32_t cycles)
