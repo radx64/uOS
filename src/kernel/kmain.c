@@ -13,10 +13,9 @@ void printfDemo();
 
 void kmain()
 {
-    //gdt_init();
     serial_init(SERIAL_COM1_BASE);
     serial_write("Serial initialized\r\n");
-
+    gdt_init();
     idt_init();
     kb_init();
 

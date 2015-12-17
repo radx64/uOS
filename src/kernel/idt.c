@@ -94,6 +94,7 @@ void keyboard_handler_main(void)
 
 void idt_init(void)
 {
+    serial_write("idt_init....");
     unsigned long keyboard_address;
     unsigned long idt_address;
     unsigned long idt_ptr[2];
@@ -143,10 +144,13 @@ void idt_init(void)
     idt_ptr[1] = idt_address >> 16 ;
 
     load_idt(idt_ptr);
+    serial_write("[ OK ]\r\n");
 }
 
 void kb_init(void)
 {
+    serial_write("kb_init....");
     /* 0xFD is 11111101 - enables only IRQ1 (keyboard)*/
     outb(0x21 , 0xFD);
+    serial_write("[ OK ]\r\n");
 }
