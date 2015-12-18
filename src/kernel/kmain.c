@@ -42,7 +42,11 @@ void sleep(uint32_t cycles)
 void headerPrint()
 {
     vga_set_colors(C_BLACK, C_GREEN);
-    vga_write("uOS by radx64 was built on: "
+    char micro[]  = " ";
+    micro[0] = 230;
+    vga_write(micro);
+    vga_write(
+        "OS by radx64 was built on: "
                 __DATE__
                 " "
                 __TIME__
