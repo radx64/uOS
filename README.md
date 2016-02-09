@@ -1,4 +1,4 @@
-# uOS
+# µOS
 micro Operating System for x86 architecture
 
 Build status: 
