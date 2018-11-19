@@ -1,0 +1,1 @@
+void on_keyboard_press(unsigned char key_code);
