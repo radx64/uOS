@@ -1,8 +1,11 @@
+OUTPUT_FORMAT(elf32-i386)
+OUTPUT_ARCH(i386)
+
 ENTRY(loader)               /* name of the entry label */
 
 SECTIONS 
 {
-    . = 0x100000;         /* the code should be loaded at 1 MB of memory */
+    . = 0x00100000;         /* the code should be loaded at 1 MB of memory */
 
     .text ALIGN (0x1000) :  /* align to 4 KB */
     {

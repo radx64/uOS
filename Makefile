@@ -29,11 +29,11 @@ configure:
 clean:
 	rm -rf build/ iso/ os.iso
 
-os.iso: $(KERNEL_BINARY_PATH)
+os.iso: #$(KERNEL_BINARY_PATH)
 	mkdir -p iso/boot/grub
 	cp grub/stage2 iso/boot/grub
 	cp grub/menu.lst iso/boot/grub 
-	cp $(KERNEL_BINARY_PATH) iso/boot/kernel.elf
+	#cp $(KERNEL_BINARY_PATH) iso/boot/kernel.elf
 
 	genisoimage -R					 \
 			-b boot/grub/stage2  \
@@ -46,7 +46,7 @@ os.iso: $(KERNEL_BINARY_PATH)
 			-o os.iso            \
 			iso
 
-run: os.iso
+run: #os.iso
 	qemu-system-x86_64 -boot d -cdrom os.iso -m 2 -serial stdio
 
 %.o: %.c ${HEADERS}
