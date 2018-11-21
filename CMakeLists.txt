@@ -2,7 +2,7 @@ set(projectName "uOS")
 set(kernel_name "kernel.elf")
 set(linker_script "../src/link.ld")
 
-cmake_minimum_required (VERSION 3.12)
+cmake_minimum_required (VERSION 3.9)
 project (${projectName} C CXX)
 enable_language(ASM_NASM)
 
