@@ -1,4 +1,5 @@
 set -e
+mkdir build-cmake
 cd build-cmake
 cmake .. && make
 cp kernel.elf ../iso/boot/kernel.elf
