@@ -33,14 +33,12 @@ void kmain()
 
 void headerPrint()
 {
-    vga_set_colors(C_BLACK, C_GREEN);
-    char micro[]  = " ";
-    micro[0] = 230;
-    vga_write(micro);
-    vga_write(
-        "OS by radx64 was built on: "
-                __DATE__
-                " "
-                __TIME__
-                "\n\n");    
+    vga_set_colors(C_BLACK, C_RED);
+    vga_write("\xc9");
+    for (uint8_t i = 0; i< 50; ++i) vga_write("\xcd");
+    vga_write("\xbb\n\xba");
+    vga_write(" \xe6OS by radx64 was built on: " __DATE__ " " __TIME__ " ");
+    vga_write("\xba\n\xc8");
+    for (uint8_t i = 0; i< 50; ++i) vga_write("\xcd");
+    vga_write("\xbc\n\n");
 }
