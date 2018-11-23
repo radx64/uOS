@@ -17,6 +17,9 @@ loader:                         				; the loader label (defined as entry point i
     mov esp, kernel_stack + KERNEL_STACK_SIZE 	; point esp to start of the stack (end of memory area)
 
 extern kmain                    ; declare kmain as external function
+    sti
+    push eax                    ; grub multiboot support
+    push ebx
     call kmain                  ; call main function
 
 .loop:
