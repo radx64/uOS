@@ -47,15 +47,7 @@ void kmain(multiboot_info_t* mbt, unsigned int magic)
     vga_write("!\n");
 
     printf("GRUB magic: %p\n",magic);
-
-    multiboot_memory_map_t* mmap = (multiboot_memory_map_t*)mbt->mmap_addr;
-
-    while((unsigned int)mmap < mbt->mmap_addr + mbt->mmap_length) 
-    {
-	printf("Size: %p\tAddr: %p\tLength: %p\tType: %p\n",mmap->size, mmap->addr, mmap->len, mmap->type);
-        mmap = (multiboot_memory_map_t*) ( (unsigned int)mmap + mmap->size + sizeof(mmap->size) );
-
-    }
+    printf("%dkB (lower) / %dkB (upper) memory available \n", mbt->mem_lower, mbt->mem_upper);
 }
 
 void headerPrint()
