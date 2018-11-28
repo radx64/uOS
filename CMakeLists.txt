@@ -13,7 +13,7 @@ set(CMAKE_ASM_NASM_COMPILE_OBJECT "<CMAKE_ASM_NASM_COMPILER> <INCLUDES> \
     <FLAGS> -f ${CMAKE_ASM_NASM_OBJECT_FORMAT} -o <OBJECT> <SOURCE>")
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${compile_flags}")
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${compile_flags}")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${compile_flags} -std=gnu99")
 
 add_subdirectory(src)
 set_target_properties(asm_src PROPERTIES LINK_FLAGS "-melf_i386")
