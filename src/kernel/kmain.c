@@ -14,19 +14,6 @@ void headerPrint();
 
 extern void keyboard_handler();
 
-/*
-int main(multiboot_info* mbt, unsigned int magic) {
-	...
-	multiboot_memory_map_t* mmap = mbt->mmap_addr;
-	while(mmap < mbt->mmap_addr + mbt->mmap_length) {
-		...
-		mmap = (multiboot_memory_map_t*) ( (unsigned int)mmap + mmap->size + sizeof(mmap->size) );
-	}
-	...
-}
-*/
-
-
 void kmain(multiboot_info_t* mbt, unsigned int magic)
 {
     serial_init(SERIAL_COM1_BASE);
@@ -44,15 +31,15 @@ void kmain(multiboot_info_t* mbt, unsigned int magic)
     vga_set_colors(C_RED, C_BLACK);
     vga_write("KERNEL");
     vga_set_colors(C_WHITE, C_BLACK);
-    vga_write("!\n");
+    vga_write("!\n\n");
 
-    printf("GRUB magic: %p\n",magic);
+    printf("GRUB magic: %p\n\n",magic);
     printf("%dkB (lower) / %dkB (upper) memory available \n", mbt->mem_lower, mbt->mem_upper);
 }
 
 void headerPrint()
 {
-    vga_set_colors(C_BLACK, C_RED);
+    vga_set_colors(C_BLACK, C_LIGHT_GREEN);
     vga_write("\xc9");
     for (uint8_t i = 0; i< 50; ++i) vga_write("\xcd");
     vga_write("\xbb\n\xba");
