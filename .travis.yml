@@ -10,6 +10,7 @@ addons:
       - build-essential 
       - nasm 
       - cmake
+      - genisoimage
 
 before_install:
   - echo $LANG
