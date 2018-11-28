@@ -10,4 +10,3 @@ then
     rm os.iso
 fi
 make os.iso
-make run
