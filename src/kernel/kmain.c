@@ -8,14 +8,17 @@
 #include "drivers/serial.h"
 #include "apps/terminal.h"
 
+#include "multiboot.h"
+
 void headerPrint();
 
 extern void keyboard_handler();
 
-void kmain()
+void kmain(multiboot_info_t* mbt, unsigned int magic)
 {
     serial_init(SERIAL_COM1_BASE);
     serial_write("Serial initialized\r\n");
+
     gdt_init();
     idt_init(&keyboard_handler);
     kb_init(&on_keyboard_press);
@@ -28,19 +31,20 @@ void kmain()
     vga_set_colors(C_RED, C_BLACK);
     vga_write("KERNEL");
     vga_set_colors(C_WHITE, C_BLACK);
-    vga_write("!\n");
+    vga_write("!\n\n");
+
+    printf("GRUB magic: %p\n\n",magic);
+    printf("%dkB (lower) / %dkB (upper) memory available \n", mbt->mem_lower, mbt->mem_upper);
 }
 
 void headerPrint()
 {
-    vga_set_colors(C_BLACK, C_GREEN);
-    char micro[]  = " ";
-    micro[0] = 230;
-    vga_write(micro);
-    vga_write(
-        "OS by radx64 was built on: "
-                __DATE__
-                " "
-                __TIME__
-                "\n\n");    
+    vga_set_colors(C_BLACK, C_LIGHT_GREEN);
+    vga_write("\xc9");
+    for (uint8_t i = 0; i< 50; ++i) vga_write("\xcd");
+    vga_write("\xbb\n\xba");
+    vga_write(" \xe6OS by radx64 was built on: " __DATE__ " " __TIME__ " ");
+    vga_write("\xba\n\xc8");
+    for (uint8_t i = 0; i< 50; ++i) vga_write("\xcd");
+    vga_write("\xbc\n\n");
 }

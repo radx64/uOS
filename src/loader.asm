@@ -1,5 +1,5 @@
 global loader                   ; the entry symbol for ELF
-
+section .multiboot
 MAGIC_NUMBER equ 0x1BADB002     ; define the magic number constant
 FLAGS        equ 0x0            ; multiboot flags
 CHECKSUM     equ -MAGIC_NUMBER  ; calculate the checksum
@@ -17,6 +17,9 @@ loader:                         				; the loader label (defined as entry point i
     mov esp, kernel_stack + KERNEL_STACK_SIZE 	; point esp to start of the stack (end of memory area)
 
 extern kmain                    ; declare kmain as external function
+    sti
+    push eax                    ; grub multiboot support
+    push ebx
     call kmain                  ; call main function
 
 .loop:
