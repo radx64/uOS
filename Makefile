@@ -47,7 +47,7 @@ os.iso: #$(KERNEL_BINARY_PATH)
 			iso
 
 run: #os.iso
-	qemu-system-x86_64 -boot d -cdrom os.iso -m 32M -serial stdio
+	qemu-system-x86_64 -boot d -cdrom os.iso -m 32M -serial stdio -cpu base
 
 %.o: %.c ${HEADERS}
 	$(CC) $(CFLAGS) $< -o $@ -I./$(SOURCE_DIR) -I./$(SOURCE_DIR)/stdlib

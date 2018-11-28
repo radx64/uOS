@@ -2,8 +2,12 @@ set -e
 mkdir -p build-cmake
 cd build-cmake
 cmake .. && make
-cp kernel.elf ../iso/boot/kernel.elf
+mkdir -p ../iso/boot
+cp -f kernel.elf ../iso/boot/kernel.elf
 cd ..
-rm os.iso
+if [ -f os.iso ] 
+then
+    rm os.iso
+fi
 make os.iso
 make run

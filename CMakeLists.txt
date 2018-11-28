@@ -19,14 +19,13 @@ add_subdirectory(src)
 set_target_properties(asm_src PROPERTIES LINK_FLAGS "-melf_i386")
 set_target_properties(loader_asm PROPERTIES LINK_FLAGS "-melf_i386")
 set_target_properties(src PROPERTIES COMPILE_FLAGS ${compile_flags})
-#set_source_files_properties(dummy.c PROPERTIES LINK_FLAGS "-melf_i386")
 
 if( CMAKE_C_LINK_EXECUTABLE)
   set(CMAKE_C_LINK_EXECUTABLE
-    "ld  <LINK_FLAGS> <OBJECTS>  -o <TARGET> <LINK_LIBRARIES>")
+    "ld  <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
 endif()
 
-set(CMAKE_EXE_LINKER_FLAGS "-T ${linker_script}")
+set(CMAKE_EXE_LINKER_FLAGS "-T ${linker_script} -melf_i386")
 SET(BUILD_SHARED_LIBS OFF)
 add_executable(${kernel_name} dummy.c)
 target_link_libraries(${kernel_name} loader_asm src asm_src)
