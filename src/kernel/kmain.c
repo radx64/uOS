@@ -21,7 +21,8 @@ void kmain(multiboot_info_t* mbt, unsigned int magic)
 
     gdt_init();
     idt_init(&keyboard_handler);
-    kb_init(&on_keyboard_press);
+    terminal_init();
+    kb_init(&terminal_on_keyboard_press);
 
     vga_clear();
     headerPrint();

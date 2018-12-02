@@ -65,7 +65,8 @@ void printf(const char* format, ...)
                     bufferIter += numberlen-1; 
                     break;
                 }
-                case 'p' : 
+                case 'p' :
+                case 'x' : 
                 {
                     const char numberBufferSize = 32;
                     char buffer[numberBufferSize];

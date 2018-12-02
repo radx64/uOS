@@ -25,5 +25,5 @@ os.iso:
 			iso
 
 run:
-	qemu-system-x86_64 -boot d -cdrom os.iso -m 32M -serial stdio -cpu base
+	qemu-system-x86_64 -boot d -cdrom os.iso -m 32M -serial stdio
 

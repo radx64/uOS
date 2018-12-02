@@ -68,6 +68,7 @@ void vga_move_cursor(uint32_t position)
     outb(vga_DATA_PORT, position & 0xFF);
     outb(vga_COMMAND_PORT, vga_HIGH_BYTE_COMMAND);
     outb(vga_DATA_PORT, (position >> 8) & 0xFF);
+    vga_currentCell = position;
 }
 
 void vga_move_cursor_xy(uint8_t x, uint8_t y)
@@ -88,6 +89,12 @@ void vga_scroll_up()
     {
         vga_write_cell(i,0, C_WHITE, C_BLACK);  
     }  
+}
+
+void vga_write_char(int8_t character)
+{
+    vga_write_cell(vga_currentCell++, character, vga_foreground, vga_background);
+    vga_move_cursor(vga_currentCell);
 }
 
 void vga_write(int8_t* buffer)
@@ -111,7 +118,7 @@ void vga_write(int8_t* buffer)
             vga_scroll_up();
             vga_currentCell = vga_currentCell - COLUMNS;
         }
-        vga_write_cell(vga_currentCell++,buffer[i], vga_foreground, vga_background);
+        vga_write_cell(vga_currentCell++, buffer[i], vga_foreground, vga_background);
     }
     vga_move_cursor(vga_currentCell);
 }

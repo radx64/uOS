@@ -1,4 +1,6 @@
 global loader                   ; the entry symbol for ELF
+extern start_ctors, end_ctors, start_dtors, end_dtors
+
 section .multiboot
 MAGIC_NUMBER equ 0x1BADB002     ; define the magic number constant
 FLAGS        equ 0x0            ; multiboot flags
