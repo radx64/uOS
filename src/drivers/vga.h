@@ -92,11 +92,19 @@ void vga_move_cursor_xy(uint8_t x, uint8_t y);
 */
 void vga_scroll_up();
 
+/** vga_write_char:
+*   Write single char in current cursor position
+*
+*   @param buffer Text to print
+*/
+void vga_write_char(int8_t character);
+
 /** vga_write:
 *   Write text to screen
 *
 *   @param buffer Text to print
 */
 void vga_write(int8_t* buffer);
+
 
 #endif // VGA_H_

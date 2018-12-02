@@ -1,7 +1,25 @@
 #include <stdint.h>
 #include <stdio.h>
+#include <math.h>
+
+#include "drivers/vga.h"
 
 #define ENTER_KEY_CODE 0x1C
+
+#define CURSOR_UP 0x48
+#define CURSOR_DOWN 0x50
+#define BACKSPACE 0x0E
+
+
+#define COLUMNS 80
+#define LINES 50
+#define VISIBLE_LINES 25
+
+uint8_t cursor_x = 0;
+uint8_t cursor_y = 0;
+uint16_t top_line_index = 0;
+
+unsigned char terminal_buffer[LINES][COLUMNS] = {};
 
 unsigned char keyboard_map[128] =
 {
@@ -43,11 +61,86 @@ unsigned char keyboard_map[128] =
     0,  /* All other keys are undefined */
 };
 
-void on_keyboard_press(const uint8_t key_code)
+void terminal_init()
 {
-    if(key_code == ENTER_KEY_CODE) {
-        printf("\n");
-        return;
+  vga_move_cursor_xy(0,0);
+}
+
+void move_buffer_up()
+{
+  for(uint16_t line = 1; line < LINES; ++line)
+  {
+    for(uint8_t column = 0; column < COLUMNS; ++column) terminal_buffer[line - 1][column] = terminal_buffer[line][column];
+  }
+  for(uint8_t column = 0; column < COLUMNS; ++column) terminal_buffer[LINES-1][column] = 0;
+}
+
+
+uint8_t last_keycode = 0;
+
+void print_debugs()
+{
+      vga_move_cursor_xy(COLUMNS - 20, 0);
+      printf("cursor_x,y = %d,%d\n" , cursor_x, cursor_y);
+      vga_move_cursor_xy(COLUMNS - 20, 1);
+      printf("top_line_index = %d\n" , top_line_index);
+      vga_move_cursor_xy(COLUMNS - 20, 2);
+      printf("last_keycode = %x\n" , last_keycode);
+}
+
+void recalculate_topline_index()
+{
+    if (cursor_y - top_line_index > VISIBLE_LINES - 1) top_line_index = cursor_y - VISIBLE_LINES + 1;
+}
+
+void terminal_on_keyboard_press(const uint8_t key_code)
+{
+    last_keycode = key_code;
+    if(key_code == ENTER_KEY_CODE)
+    {
+        ++cursor_y;
+        cursor_x = 0;
+        if (cursor_y >= LINES)
+        {
+          move_buffer_up();
+          cursor_y--;
+        }
+        recalculate_topline_index();
     }
-    printf("%c", keyboard_map[(unsigned char)key_code]);
+    else if(key_code == CURSOR_UP)
+    {
+        if (top_line_index > 0) top_line_index--;
+    }
+    else if(key_code == CURSOR_DOWN)
+    {
+        if (top_line_index + VISIBLE_LINES < LINES) top_line_index++;
+    }
+    else if(key_code == BACKSPACE)
+    {
+      if(cursor_x > 0) cursor_x--;
+      terminal_buffer[cursor_y][cursor_x] = 0;
+    }
+    else
+    {
+      terminal_buffer[cursor_y][cursor_x] = keyboard_map[(unsigned char)key_code];
+      ++cursor_x;
+      if (cursor_x >= COLUMNS)
+      {
+        cursor_x = 0;
+        ++cursor_y;
+      }
+      recalculate_topline_index();
+    }
+
+    for (uint16_t line = 0 + top_line_index; line < VISIBLE_LINES + top_line_index; ++line)
+    {
+      for(uint8_t column = 0; column <= COLUMNS; ++column)
+      {
+        vga_write_cell_xy(column, line - top_line_index, terminal_buffer[line][column], C_WHITE, C_BLACK);
+      }
+    }
+
+    print_debugs();
+
+    vga_move_cursor_xy(cursor_x, cursor_y - top_line_index);
 }

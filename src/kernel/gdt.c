@@ -11,10 +11,10 @@ void gdt_init()
 {
 	serial_write("gdt_init....");
 	gdt_set_desc(&gdt[0], 0, 0, 0, 0);
-	gdt_set_desc(&gdt[1], 0, 0xFFFFFFFF, 0x9A, 0xCF);
-	gdt_set_desc(&gdt[2], 0, 0xFFFFFFFF, 0x92, 0xCF);
-	gdt_set_desc(&gdt[3], 0, 0xFFFFFFFF, 0xFA, 0xCF);
-	gdt_set_desc(&gdt[4], 0, 0xFFFFFFFF, 0xF2, 0xCF);
+	gdt_set_desc(&gdt[1], 0x0, 0xFFFFFFFF, 0x9A, 0xCF);
+	gdt_set_desc(&gdt[2], 0x0, 0xFFFFFFFF, 0x92, 0xCF);
+	gdt_set_desc(&gdt[3], 0x0, 0xFFFFFFFF, 0xFA, 0xCF);
+	// gdt_set_desc(&gdt[4], 0, 0xFFFFFFFF, 0xF2, 0xCF);
 
 	gdt_ptr.base = (uint32_t) &gdt;
 	gdt_ptr.limit = sizeof(gdt_descriptor_t) * GDT_LEN - 1;
