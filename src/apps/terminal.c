@@ -8,6 +8,10 @@
 
 #define CURSOR_UP 0x48
 #define CURSOR_DOWN 0x50
+#define CURSOR_LEFT 0x4B
+#define CURSOR_RIGHT 0x4D
+#define PAGE_UP 0x49
+#define PAGE_DOWN 0x51
 #define BACKSPACE 0x0E
 
 
@@ -107,11 +111,11 @@ void terminal_on_keyboard_press(const uint8_t key_code)
         }
         recalculate_topline_index();
     }
-    else if(key_code == CURSOR_UP)
+    else if(key_code == PAGE_UP)
     {
         if (top_line_index > 0) top_line_index--;
     }
-    else if(key_code == CURSOR_DOWN)
+    else if(key_code == PAGE_DOWN)
     {
         if (top_line_index + VISIBLE_LINES < LINES) top_line_index++;
     }
@@ -120,16 +124,36 @@ void terminal_on_keyboard_press(const uint8_t key_code)
       if(cursor_x > 0) cursor_x--;
       terminal_buffer[cursor_y][cursor_x] = 0;
     }
+    else if(key_code == CURSOR_LEFT)
+    {
+      if (cursor_x > 0) cursor_x--;
+    }
+    else if(key_code == CURSOR_RIGHT)
+    {
+      if (cursor_x < COLUMNS-1) cursor_x++;
+    }
+    else if(key_code == CURSOR_UP)
+    {
+      if (cursor_y > 0) cursor_y--;
+    }
+    else if(key_code == CURSOR_DOWN)
+    {
+      if (cursor_y < ROWS-1) cursor_y++;
+    }
     else
     {
-      terminal_buffer[cursor_y][cursor_x] = keyboard_map[(unsigned char)key_code];
-      ++cursor_x;
-      if (cursor_x >= COLUMNS)
+      char char_to_put = keyboard_map[(unsigned char)key_code];
+      if (char_to_put != 0)
       {
-        cursor_x = 0;
-        ++cursor_y;
+        terminal_buffer[cursor_y][cursor_x] = char_to_put;
+        ++cursor_x;
+        if (cursor_x >= COLUMNS)
+        {
+          cursor_x = 0;
+          ++cursor_y;
+        }
+        recalculate_topline_index();
       }
-      recalculate_topline_index();
     }
 
     for (uint16_t line = 0 + top_line_index; line < VISIBLE_LINES + top_line_index; ++line)
