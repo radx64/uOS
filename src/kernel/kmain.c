@@ -14,13 +14,18 @@ void headerPrint();
 
 extern void keyboard_handler();
 
+extern void enable_interrupts();
+
 void kmain(multiboot_info_t* mbt, unsigned int magic)
 {
     serial_init(SERIAL_COM1_BASE);
-    serial_write("Serial initialized\r\n");
+    serial_write("Serial initialization....[OK]\r\n");
 
     gdt_init();
     idt_init(&keyboard_handler);
+    serial_write("Interrupts initalization....");
+    enable_interrupts();
+    serial_write("[OK]\r\n");
     terminal_init();
     kb_init(&terminal_on_keyboard_press);
 

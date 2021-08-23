@@ -1,5 +1,4 @@
 global load_idt
-
 load_idt:
     mov edx, [esp + 4]
     lidt [edx]
@@ -7,9 +6,8 @@ load_idt:
     ret
 
 global gdt_set
-
 gdt_set:
-	mov	eax, [esp+4]	; get passed pointer
+	mov	eax, [esp + 4]	; get passed pointer
 	lgdt	[eax]       ; load new GDT pointer
 
 	mov	ax, 0x10	; load all data segment registers
@@ -21,4 +19,9 @@ gdt_set:
 	jmp	0x08:.flush	; far jump to code segment
 
 .flush:
+	ret
+
+global enable_interrupts
+enable_interrupts:
+	sti		; enable interrupts
 	ret
