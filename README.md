@@ -35,3 +35,4 @@ Build status:
 - NASM [tutorial](http://cs.lmu.edu/~ray/notes/nasmtutorial) 
 - R. Hyde. The art of Assembly Language [Chapter 22 The PC Serial Ports](http://flint.cs.yale.edu/cs422/doc/art-of-asm/pdf/CH22.PDF)
 - Series of lectures from Princeton Univeristy Computer Science Department [link here](https://www.cs.princeton.edu/courses/archive/fall15/cos318)
+- JamesM's kernel development tutorials [link here](http://www.jamesmolloy.co.uk/tutorial_html/1.-Environment%20setup.html)
