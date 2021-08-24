@@ -5,12 +5,18 @@
     Ported to uOS by radx64.
 */
 
+#include <string.h>
+
 #include "isr.h"
 #include "drivers/serial.h"
 
 /* This gets called from ASM interrupt handler stub. */
 void isr_handler(registers_t regs)
 {
-    (void) regs;
-    serial_write("recieved interrupt!\r\n");
+    char interupt_number_text_buffer[5];
+    char* result = itoa(regs.int_no, interupt_number_text_buffer+4, 10);
+
+    serial_write("Recieved interrupt no: ");
+    serial_write(result);
+    serial_write("\r\n");
 }

@@ -41,6 +41,9 @@ void kmain(multiboot_info_t* mbt, unsigned int magic)
 
     printf("GRUB magic: %p\n\n",magic);
     printf("%dkB (lower) / %dkB (upper) memory available \n", mbt->mem_lower, mbt->mem_upper);
+
+    asm volatile ("int $0x3");
+    asm volatile ("int $0x4");
 }
 
 void headerPrint()
