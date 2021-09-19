@@ -1,1 +1,1 @@
-qemu-system-x86_64 -boot d -cdrom os.iso -m 32M -serial stdio
+qemu-system-x86_64 -boot d -cdrom os.iso -m 32M -serial stdio -d cpu_reset
