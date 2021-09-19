@@ -18,6 +18,14 @@ extern void enable_interrupts();
 
 void kmain(multiboot_info_t* mbt, unsigned int magic)
 {
+    /**
+    TODO: Initializing serial console before gdt and idt initalization
+    is risky. Some hardware exception might happen that will lead to
+    unhandled interrupt and (eventually) to processor triple fault.
+    Serial writing is now only for some initial debugging. Some system
+    for logging need to be implemented later on.
+    */
+
     serial_init(SERIAL_COM1_BASE);
     serial_write("Serial initialization....[OK]\r\n");
 
