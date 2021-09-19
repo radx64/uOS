@@ -1,5 +1,8 @@
 #include <stdint.h>
 #include <stdio.h>
+
+#include "multiboot.h"
+
 #include "gdt.h"
 #include "idt.h"
 #include "drivers/io.h"
@@ -7,8 +10,6 @@
 #include "drivers/vga.h"
 #include "drivers/serial.h"
 #include "apps/terminal.h"
-
-#include "multiboot.h"
 
 void headerPrint();
 
